@@ -135,7 +135,6 @@
 		97A84E6C1701236400A5A273 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 97A84E6B1701236400A5A273 /* vec4.c */; };
 		97A84E711701236400A5A273 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A84E701701236400A5A273 /* main.m */; };
 		97A84E741701236400A5A273 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A84E731701236400A5A273 /* AppDelegate.m */; };
-		97A84E771701236400A5A273 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A84E761701236400A5A273 /* HelloWorldLayer.m */; };
 		97A84E7A1701236400A5A273 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A84E791701236400A5A273 /* IntroLayer.m */; };
 		97A84E85170124C300A5A273 /* Snake-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E81170124C300A5A273 /* Snake-hd.plist */; };
 		97A84E86170124C300A5A273 /* Snake-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E82170124C300A5A273 /* Snake-hd.png */; };
@@ -421,8 +420,6 @@
 		97A84E701701236400A5A273 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		97A84E721701236400A5A273 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		97A84E731701236400A5A273 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		97A84E751701236400A5A273 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		97A84E761701236400A5A273 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		97A84E781701236400A5A273 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		97A84E791701236400A5A273 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		97A84E81170124C300A5A273 /* Snake-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Snake-hd.plist"; sourceTree = "<group>"; };
@@ -479,6 +476,31 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		9797D8A61701754300FF3F6C /* GameScene */ = {
+			isa = PBXGroup;
+			children = (
+				97A84E781701236400A5A273 /* IntroLayer.h */,
+				97A84E791701236400A5A273 /* IntroLayer.m */,
+				97A84E8B1701258800A5A273 /* MenuLayer.h */,
+				97A84E8C1701258800A5A273 /* MenuLayer.m */,
+				97A84E9717013B7E00A5A273 /* AboutLayer.h */,
+				97A84E9817013B7E00A5A273 /* AboutLayer.m */,
+				97A84EA2170144E300A5A273 /* SettingLayer.h */,
+				97A84EA3170144E300A5A273 /* SettingLayer.m */,
+				9797D89E1701708C00FF3F6C /* HighScoreLayer.h */,
+				9797D89F1701708C00FF3F6C /* HighScoreLayer.m */,
+			);
+			name = GameScene;
+			sourceTree = "<group>";
+		};
+		9797D8A7170175B100FF3F6C /* GameConfig */ = {
+			isa = PBXGroup;
+			children = (
+				97A84E8E1701270D00A5A273 /* GameConfig.h */,
+			);
+			name = GameConfig;
+			sourceTree = "<group>";
+		};
 		97A84CDC1701236000A5A273 = {
 			isa = PBXGroup;
 			children = (
@@ -515,22 +537,11 @@
 		97A84CFA1701236000A5A273 /* Snake */ = {
 			isa = PBXGroup;
 			children = (
+				9797D8A7170175B100FF3F6C /* GameConfig */,
+				9797D8A61701754300FF3F6C /* GameScene */,
 				97A84EA91701520100A5A273 /* CCRadioMenu */,
 				97A84E721701236400A5A273 /* AppDelegate.h */,
 				97A84E731701236400A5A273 /* AppDelegate.m */,
-				97A84E751701236400A5A273 /* HelloWorldLayer.h */,
-				97A84E761701236400A5A273 /* HelloWorldLayer.m */,
-				97A84E781701236400A5A273 /* IntroLayer.h */,
-				97A84E791701236400A5A273 /* IntroLayer.m */,
-				97A84E8B1701258800A5A273 /* MenuLayer.h */,
-				97A84E8C1701258800A5A273 /* MenuLayer.m */,
-				97A84E8E1701270D00A5A273 /* GameConfig.h */,
-				97A84E9717013B7E00A5A273 /* AboutLayer.h */,
-				97A84E9817013B7E00A5A273 /* AboutLayer.m */,
-				97A84EA2170144E300A5A273 /* SettingLayer.h */,
-				97A84EA3170144E300A5A273 /* SettingLayer.m */,
-				9797D89E1701708C00FF3F6C /* HighScoreLayer.h */,
-				9797D89F1701708C00FF3F6C /* HighScoreLayer.m */,
 				97A84CFB1701236000A5A273 /* Resources */,
 				97A84D151701236000A5A273 /* libs */,
 				97A84E6E1701236400A5A273 /* Supporting Files */,
@@ -1126,7 +1137,6 @@
 				97A84E6C1701236400A5A273 /* vec4.c in Sources */,
 				97A84E711701236400A5A273 /* main.m in Sources */,
 				97A84E741701236400A5A273 /* AppDelegate.m in Sources */,
-				97A84E771701236400A5A273 /* HelloWorldLayer.m in Sources */,
 				97A84E7A1701236400A5A273 /* IntroLayer.m in Sources */,
 				97A84E8D1701258800A5A273 /* MenuLayer.m in Sources */,
 				97A84E9917013B7E00A5A273 /* AboutLayer.m in Sources */,
