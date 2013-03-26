@@ -40,6 +40,9 @@
         
         // music setting
         
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *isMusicOn = [defaults objectForKey:@"isMusicOn"];
+        
         CCLabelTTF *musicLabel = [CCLabelTTF labelWithString:@"音乐: " fontName:@"Marker Felt" fontSize:25];
         [musicLabel setPosition:CGPointMake(winSize.width * 0.3, winSize.height * 0.7)];
         [musicLabel setColor:ccBLACK];
@@ -53,10 +56,18 @@
         CCSprite *playBtn1 = [CCSprite spriteWithFile:@"on.png"];
         CCMenuItemSprite *play = [CCMenuItemSprite itemWithNormalSprite:playBtn selectedSprite:playBtn1 target:self selector:nil];
         
-        musicBtn = [CCMenuItemToggle itemWithTarget:self selector:@selector(musicSetting) items:play, pause, nil];
+        if ([isMusicOn isEqualToString:@"on"]) {
+            
+            musicBtn = [CCMenuItemToggle itemWithTarget:self selector:@selector(musicSetting) items:play, pause, nil];
+        } else {
+            
+            musicBtn = [CCMenuItemToggle itemWithTarget:self selector:@selector(musicSetting) items:pause, play, nil];
+        }
+        
         [musicBtn setPosition:CGPointMake(winSize.width * 0.1, winSize.height * 0.2)];
         
         CCMenu *menu1 = [CCMenu menuWithItems:musicBtn, nil];
+        
         [self addChild:menu1];
         
         // easy or difficult
@@ -83,8 +94,22 @@
         CCRadioMenu *radioMenu = [CCRadioMenu menuWithItems:easyItem, mediumItem, difficultItem, nil];
         [radioMenu setPosition:CGPointMake(winSize.width * 0.6, winSize.height * 0.4)];
         [radioMenu alignItemsVertically];
-        [radioMenu setSelectedItem_:easyItem];
-        [easyItem selected];
+        
+        NSString *degree = [defaults objectForKey:@"degree"];
+        if ([degree isEqualToString:@"medium"]) {
+            
+            [radioMenu setSelectedItem_:mediumItem];
+            [mediumItem selected];
+        } else if ([degree isEqualToString:@"difficult"]) {
+            
+            [radioMenu setSelectedItem_:difficultItem];
+            [difficultItem selected];
+        } else {
+            
+            [radioMenu setSelectedItem_:easyItem];
+            [easyItem selected];
+        }
+        
         [self addChild:radioMenu];
     }
     
@@ -98,30 +123,42 @@
 
 - (void)musicSetting
 {
-    if ([musicBtn selectedIndex] == 0) {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *isMusicOn = [defaults objectForKey:@"isMusicOn"];
+    CCLOG(@"%@", [defaults objectForKey:@"isMusicOn"]);
+    
+    if ([isMusicOn isEqualToString:@"off"]) {
         
         // play music
         CCLOG(@"music play");
-    } else if ([musicBtn selectedIndex] == 1) {
+        [defaults setObject:@"on" forKey:@"isMusicOn"];
+    } else if ([isMusicOn isEqualToString:@"on"]) {
         
         // stop music
         CCLOG(@"music stop");
+        [defaults setObject:@"off" forKey:@"isMusicOn"];
     }
 }
 
 - (void)easyBtnTapped: (id)sender
 {
     CCLOG(@"easy");
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"easy" forKey:@"degree"];
 }
 
 - (void)mediumBtnTapped: (id)sender
 {
     CCLOG(@"medium");
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"medium" forKey:@"degree"];
 }
 
 - (void)diffBtnTapped: (id)sender
 {
     CCLOG(@"difficult");
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"difficult" forKey:@"degree"];
 }
 
 @end

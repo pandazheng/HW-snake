@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9797D89D1701640900FF3F6C /* GameConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9797D89C1701640900FF3F6C /* GameConfig.plist */; };
 		97A84CE91701236000A5A273 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A84CE81701236000A5A273 /* QuartzCore.framework */; };
 		97A84CEB1701236000A5A273 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A84CEA1701236000A5A273 /* OpenGLES.framework */; };
 		97A84CED1701236000A5A273 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A84CEC1701236000A5A273 /* OpenAL.framework */; };
@@ -154,6 +155,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9797D89C1701640900FF3F6C /* GameConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameConfig.plist; sourceTree = "<group>"; };
 		97A84CE51701236000A5A273 /* Snake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A84CE81701236000A5A273 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		97A84CEA1701236000A5A273 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -899,6 +901,7 @@
 				97A84E83170124C300A5A273 /* Snake.plist */,
 				97A84E84170124C300A5A273 /* Snake.png */,
 				97A84E95170139A300A5A273 /* snow.png */,
+				9797D89C1701640900FF3F6C /* GameConfig.plist */,
 			);
 			name = "Snake-Resources";
 			sourceTree = "<group>";
@@ -989,6 +992,7 @@
 				97A84EA11701418200A5A273 /* menu-on.png in Resources */,
 				97A84EA61701495100A5A273 /* on.png in Resources */,
 				97A84EA81701495500A5A273 /* off.png in Resources */,
+				9797D89D1701640900FF3F6C /* GameConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

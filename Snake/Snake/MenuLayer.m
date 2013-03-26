@@ -27,6 +27,9 @@
 {
     if (self = [super init]) {
         
+        // initilize the User Default
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
         CCDirector *director = [CCDirector sharedDirector];
         CGSize winSize = [director winSize];
         
@@ -35,7 +38,7 @@
         
         // set the label for title 
         CCLabelTTF *label = [CCLabelTTF labelWithString:@"Snake World" fontName:@"Zapfino" fontSize:28];
-        [label setPosition:CGPointMake(winSize.width / 2, winSize.height / 1.2)];
+        [label setPosition:CGPointMake(winSize.width / 2, winSize.height / 1.3)];
         [label setColor:ccRED];
         [self addChild:label];
         
@@ -56,6 +59,7 @@
                                                                        selector:@selector(aboutBtnClicked)];
         
         CCMenu *menu = [CCMenu menuWithItems:playBtn, highScoreBtn, aboutBtn, nil];
+        [menu setPosition:CGPointMake(winSize.width / 2, winSize.height / 2.4)];
         [menu alignItemsVertically];
         
         // set the setting menu 
