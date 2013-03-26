@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Food.h"
 
 @interface WorldLayer : CCLayer {
     
@@ -16,6 +17,9 @@
     
     CCLabelTTF *scoreLabel_;
     NSInteger score_;
+    
+    // Food Sprite
+    CCSprite *foodSprite_;
     
     // game info
     NSArray *info_;

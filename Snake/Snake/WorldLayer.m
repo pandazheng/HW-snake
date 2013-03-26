@@ -57,6 +57,14 @@ void ccDrawFilledCGRect( CGRect rect )
         // set up the game information
         info_ = [[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GameConfig" ofType:@"plist"]] retain];
         
+        Food *food = [[Food alloc] init];
+        foodSprite_ = [food getFoodSprite];
+        
+        NSInteger remain = [food getRemainingFoodPieceNumber];
+        CCLOG(@"nimei : %d", remain);
+        
+        [self putFood:foodSprite_];
+        
         [self setMenuButtonAndPauseButton];
         
         [self setScore:0];
@@ -99,6 +107,28 @@ void ccDrawFilledCGRect( CGRect rect )
     }
     
     [scoreLabel_ setString:[NSString stringWithFormat:@"Score: %d", score_]];
+}
+
+- (void)putFood: (CCSprite *)foodSprite
+{
+    NSInteger col =  0;
+    NSInteger row = 0;
+    
+    while (true) {
+        
+        col = rand() % MAX_COLS;
+        row = rand() % MAX_ROWS;
+        
+        BOOL isColliding = NO;
+        
+        if (!isColliding) {
+            
+            foodSprite.tag = col * 100 + row;
+            break;
+        }
+    }
+    [self addChild:foodSprite];
+    foodSprite.position = CGPointMake(44 + col * 20, 38 + row * 20);
 }
 
 - (void)menuBtnClicked
