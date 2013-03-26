@@ -29,6 +29,7 @@ void ccDrawFilledCGRect( CGRect rect )
 
 @implementation WorldLayer
 @synthesize score = score_;
+@synthesize info = info_;
 
 + (CCScene *)scene
 {
@@ -52,6 +53,9 @@ void ccDrawFilledCGRect( CGRect rect )
         
         // initialize a rectangle, which the snake can move
         gameAreaRect_ = CGRectMake(29, 22, 422, 242);               // 39
+        
+        // set up the game information
+        info_ = [[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GameConfig" ofType:@"plist"]] retain];
         
         [self setMenuButtonAndPauseButton];
         

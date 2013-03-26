@@ -16,10 +16,14 @@
     
     CCLabelTTF *scoreLabel_;
     NSInteger score_;
+    
+    // game info
+    NSArray *info_;
 }
 
 + (CCScene *)scene;
 
 @property(nonatomic, assign) NSInteger score;
+@property(nonatomic, assign) NSArray *info;
 
 @end
