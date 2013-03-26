@@ -31,7 +31,10 @@
         [self addChild:background];
         
         // return to the menu layer
-        CCMenuItemSprite *menuBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"menu.png"] selectedSprite:[CCSprite spriteWithFile:@"menu-on.png"] target:self selector:@selector(menuBtnClicked)];
+        CCMenuItemSprite *menuBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"menu.png"]
+                                                            selectedSprite:[CCSprite spriteWithFile:@"menu-on.png"]
+                                                                    target:self
+                                                                  selector:@selector(menuBtnClicked)];
         [menuBtn setPosition:CGPointMake(winSize.width * 0.43, winSize.height * 0.4)];
         
         CCMenu *menu = [CCMenu menuWithItems:menuBtn, nil];

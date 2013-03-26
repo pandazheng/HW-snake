@@ -33,7 +33,10 @@
         [self addChild:background];
         
         // return to the menu layer
-        CCMenuItemSprite *menuBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"menu.png"] selectedSprite:[CCSprite spriteWithFile:@"menu-on.png"] target:self selector:@selector(menuBtnClicked)];
+        CCMenuItemSprite *menuBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"menu.png"]
+                                                            selectedSprite:[CCSprite spriteWithFile:@"menu-on.png"]
+                                                                    target:self
+                                                                  selector:@selector(menuBtnClicked)];
         [menuBtn setPosition:CGPointMake(winSize.width * 0.43, winSize.height * 0.4)];
         
         CCMenu *menu = [CCMenu menuWithItems:menuBtn, nil];
@@ -51,11 +54,17 @@
         
         CCSprite *pauseBtn = [CCSprite spriteWithFile:@"off.png"];
         CCSprite *pauseBtn1 = [CCSprite spriteWithFile:@"off.png"];
-        CCMenuItemSprite *pause = [CCMenuItemSprite itemWithNormalSprite:pauseBtn selectedSprite:pauseBtn1 target:self selector:nil];
+        CCMenuItemSprite *pause = [CCMenuItemSprite itemWithNormalSprite:pauseBtn
+                                                          selectedSprite:pauseBtn1
+                                                                  target:self
+                                                                selector:nil];
         
         CCSprite *playBtn = [CCSprite spriteWithFile:@"on.png"];
         CCSprite *playBtn1 = [CCSprite spriteWithFile:@"on.png"];
-        CCMenuItemSprite *play = [CCMenuItemSprite itemWithNormalSprite:playBtn selectedSprite:playBtn1 target:self selector:nil];
+        CCMenuItemSprite *play = [CCMenuItemSprite itemWithNormalSprite:playBtn
+                                                         selectedSprite:playBtn1
+                                                                 target:self
+                                                               selector:nil];
         
         if ([isMusicOn isEqualToString:@"on"]) {
             
@@ -88,9 +97,21 @@
         [diffLabel setColor:ccBLACK];
         [self addChild:diffLabel];
         
-        CCMenuItem *easyItem = [CCMenuItemImage itemWithNormalImage:@"off.png" selectedImage:@"on.png" disabledImage:@"off.png" target:self selector:@selector(easyBtnTapped:)];
-        CCMenuItem *mediumItem = [CCMenuItemImage itemWithNormalImage:@"off.png" selectedImage:@"on.png" disabledImage:@"off.png" target:self selector:@selector(mediumBtnTapped:)];
-        CCMenuItem *difficultItem = [CCMenuItemImage itemWithNormalImage:@"off.png" selectedImage:@"on.png" disabledImage:@"off.png" target:self selector:@selector(diffBtnTapped:)];
+        CCMenuItem *easyItem = [CCMenuItemImage itemWithNormalImage:@"off.png"
+                                                      selectedImage:@"on.png"
+                                                      disabledImage:@"off.png"
+                                                             target:self
+                                                           selector:@selector(easyBtnTapped:)];
+        CCMenuItem *mediumItem = [CCMenuItemImage itemWithNormalImage:@"off.png"
+                                                        selectedImage:@"on.png"
+                                                        disabledImage:@"off.png"
+                                                               target:self
+                                                             selector:@selector(mediumBtnTapped:)];
+        CCMenuItem *difficultItem = [CCMenuItemImage itemWithNormalImage:@"off.png"
+                                                           selectedImage:@"on.png"
+                                                           disabledImage:@"off.png"
+                                                                  target:self
+                                                                selector:@selector(diffBtnTapped:)];
         
         CCRadioMenu *radioMenu = [CCRadioMenu menuWithItems:easyItem, mediumItem, difficultItem, nil];
         [radioMenu setPosition:CGPointMake(winSize.width * 0.6, winSize.height * 0.4)];

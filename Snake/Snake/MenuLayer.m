@@ -62,7 +62,10 @@
         [menu alignItemsVertically];
         
         // set the setting menu 
-        CCMenuItemSprite *settingBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"setting.png"] selectedSprite:[CCSprite spriteWithFile:@"setting-on.png"] target:self selector:@selector(settingBtnClicked)];
+        CCMenuItemSprite *settingBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"setting.png"]
+                                                               selectedSprite:[CCSprite spriteWithFile:@"setting-on.png"]
+                                                                       target:self
+                                                                     selector:@selector(settingBtnClicked)];
         
         [settingBtn setPosition:CGPointMake(210, -130)];
         CCMenu *menu1 =[CCMenu menuWithItems:settingBtn, nil];
