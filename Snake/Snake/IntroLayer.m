@@ -10,6 +10,7 @@
 // Import the interfaces
 #import "IntroLayer.h"
 #import "MenuLayer.h"
+#import "SimpleAudioEngine.h"
 
 #pragma mark - IntroLayer
 
@@ -37,9 +38,13 @@
 {
 	[super onEnter];
     
+    // initilize the User defaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:@"off" forKey:@"isMusicOn"];
     [defaults setObject:@"easy" forKey:@"degree"];
+    
+    // pre load the background sound
+    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"background-music-aac.caf"];
 
 	// ask director for the window size
 	CGSize size = [[CCDirector sharedDirector] winSize];

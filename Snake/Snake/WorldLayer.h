@@ -11,9 +11,15 @@
 
 @interface WorldLayer : CCLayer {
     
+    CGSize winSize_;
     CGRect gameAreaRect_;
+    
+    CCLabelTTF *scoreLabel_;
+    NSInteger score_;
 }
 
 + (CCScene *)scene;
+
+@property(nonatomic, assign) NSInteger score;
 
 @end

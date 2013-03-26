@@ -28,6 +28,7 @@ void ccDrawFilledCGRect( CGRect rect )
 }
 
 @implementation WorldLayer
+@synthesize score = score_;
 
 + (CCScene *)scene
 {
@@ -41,7 +42,7 @@ void ccDrawFilledCGRect( CGRect rect )
 {
     if (self = [super init]) {
         
-        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        winSize_ = [[CCDirector sharedDirector] winSize];
         
         CCLayerColor *background = [CCLayerColor layerWithColor:kGameBackgroundColor];
         [self addChild:background z:-1];
@@ -52,27 +53,48 @@ void ccDrawFilledCGRect( CGRect rect )
         // initialize a rectangle, which the snake can move
         gameAreaRect_ = CGRectMake(29, 22, 422, 242);               // 39
         
-        // return to the menu layer
-        CCMenuItemSprite *menuBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"menu.png"]
-                                                            selectedSprite:[CCSprite spriteWithFile:@"menu-on.png"]
-                                                                    target:self
-                                                                  selector:@selector(menuBtnClicked)];
-        [menuBtn setPosition:CGPointMake(winSize.width * 0.40, winSize.height * 0.415)];
+        [self setMenuButtonAndPauseButton];
         
-        CCMenu *menu = [CCMenu menuWithItems:menuBtn, nil];
-        [self addChild:menu z:-1];
-        
-        // initialize the pause button
-        CCMenuItemSprite *pauseBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithSpriteFrameName:@"btn-pause-off.png"]
-                                                             selectedSprite:[CCSprite spriteWithSpriteFrameName:@"btn-pause-on.png"]
-                                                                     target:self
-                                                                   selector:@selector(pauseTheGame:)];
-        CCMenu *menuPause = [CCMenu menuWithItems:pauseBtn, nil];
-        [menuPause setPosition:CGPointMake(winSize.width * 0.17, winSize.height * 0.90)];
-        [self addChild:menuPause z:-1];
+        [self setScore:0];
     }
     
     return self;
+}
+
+// set menu button and pause button
+- (void)setMenuButtonAndPauseButton
+{
+    // return to the menu layer
+    CCMenuItemSprite *menuBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"menu.png"]
+                                                        selectedSprite:[CCSprite spriteWithFile:@"menu-on.png"]
+                                                                target:self
+                                                              selector:@selector(menuBtnClicked)];
+    [menuBtn setPosition:CGPointMake(winSize_.width * 0.40, winSize_.height * 0.415)];
+    
+    CCMenu *menu = [CCMenu menuWithItems:menuBtn, nil];
+    [self addChild:menu z:-1];
+    
+    // initialize the pause button
+    CCMenuItemSprite *pauseBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithSpriteFrameName:@"btn-pause-off.png"]
+                                                         selectedSprite:[CCSprite spriteWithSpriteFrameName:@"btn-pause-on.png"]
+                                                                 target:self
+                                                               selector:@selector(pauseTheGame:)];
+    CCMenu *menuPause = [CCMenu menuWithItems:pauseBtn, nil];
+    [menuPause setPosition:CGPointMake(winSize_.width * 0.17, winSize_.height * 0.90)];
+    [self addChild:menuPause z:-1];
+}
+
+// set the score with score
+- (void)setScore:(NSInteger)score
+{
+    if (!scoreLabel_) {
+        
+        scoreLabel_ = [CCLabelTTF labelWithString:@"Score: 0" fontName:@"Marker Felt" fontSize:25];
+        [scoreLabel_ setPosition:ccp(winSize_.width / 2, winSize_.height * 0.90)];
+        [self addChild:scoreLabel_];
+    }
+    
+    [scoreLabel_ setString:[NSString stringWithFormat:@"Score: %d", score_]];
 }
 
 - (void)menuBtnClicked
