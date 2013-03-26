@@ -133,6 +133,11 @@
 		97A84E741701236400A5A273 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A84E731701236400A5A273 /* AppDelegate.m */; };
 		97A84E771701236400A5A273 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A84E761701236400A5A273 /* HelloWorldLayer.m */; };
 		97A84E7A1701236400A5A273 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A84E791701236400A5A273 /* IntroLayer.m */; };
+		97A84E85170124C300A5A273 /* Snake-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E81170124C300A5A273 /* Snake-hd.plist */; };
+		97A84E86170124C300A5A273 /* Snake-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E82170124C300A5A273 /* Snake-hd.png */; };
+		97A84E87170124C300A5A273 /* Snake.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E83170124C300A5A273 /* Snake.plist */; };
+		97A84E88170124C300A5A273 /* Snake.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E84170124C300A5A273 /* Snake.png */; };
+		97A84E8A170124E900A5A273 /* level.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E89170124E900A5A273 /* level.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -398,6 +403,11 @@
 		97A84E761701236400A5A273 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		97A84E781701236400A5A273 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		97A84E791701236400A5A273 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		97A84E81170124C300A5A273 /* Snake-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Snake-hd.plist"; sourceTree = "<group>"; };
+		97A84E82170124C300A5A273 /* Snake-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Snake-hd.png"; sourceTree = "<group>"; };
+		97A84E83170124C300A5A273 /* Snake.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Snake.plist; sourceTree = "<group>"; };
+		97A84E84170124C300A5A273 /* Snake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snake.png; sourceTree = "<group>"; };
+		97A84E89170124E900A5A273 /* level.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -472,6 +482,7 @@
 		97A84CFB1701236000A5A273 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				97A84E801701247E00A5A273 /* Snake-Resources */,
 				97A84CFC1701236000A5A273 /* Default.png */,
 				97A84CFE1701236000A5A273 /* Default-Landscape~ipad.png */,
 				97A84D001701236000A5A273 /* fps_images.png */,
@@ -832,6 +843,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		97A84E801701247E00A5A273 /* Snake-Resources */ = {
+			isa = PBXGroup;
+			children = (
+				97A84E81170124C300A5A273 /* Snake-hd.plist */,
+				97A84E82170124C300A5A273 /* Snake-hd.png */,
+				97A84E83170124C300A5A273 /* Snake.plist */,
+				97A84E84170124C300A5A273 /* Snake.png */,
+				97A84E89170124E900A5A273 /* level.plist */,
+			);
+			name = "Snake-Resources";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -895,6 +918,11 @@
 				97A84D111701236000A5A273 /* Icon@2x.png in Resources */,
 				97A84D141701236000A5A273 /* iTunesArtwork in Resources */,
 				97A84E521701236400A5A273 /* ChangeLog in Resources */,
+				97A84E85170124C300A5A273 /* Snake-hd.plist in Resources */,
+				97A84E86170124C300A5A273 /* Snake-hd.png in Resources */,
+				97A84E87170124C300A5A273 /* Snake.plist in Resources */,
+				97A84E88170124C300A5A273 /* Snake.png in Resources */,
+				97A84E8A170124E900A5A273 /* level.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,6 +1140,7 @@
 				97A84E7F1701236400A5A273 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
