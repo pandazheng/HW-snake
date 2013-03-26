@@ -8,6 +8,7 @@
 
 #import "MenuLayer.h"
 #import "AboutLayer.h"
+#import "SettingLayer.h"
 #import "GameConfig.h"
 
 
@@ -70,25 +71,30 @@
     return self;
 }
 
+// play game
 - (void)playBtnClicked
 {
     
 }
 
+// high score layer
 - (void)highScoreBtnClicked
 {
     
 }
 
+// about layer
 - (void)aboutBtnClicked
 {
     CCDirector *director = [CCDirector sharedDirector];
     [director replaceScene:[AboutLayer scene]];
 }
 
+// set the game setting
 - (void)settingBtnClicked
 {
-    CCLOG(@"you win");
+    CCDirector *director = [CCDirector sharedDirector];
+    [director replaceScene:[SettingLayer scene]];
 }
 
 @end

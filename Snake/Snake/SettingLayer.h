@@ -10,7 +10,9 @@
 #import "cocos2d.h"
 
 @interface SettingLayer : CCLayer {
-    
+    CCMenuItemToggle *musicBtn;
 }
+
++ (CCScene *)scene;
 
 @end

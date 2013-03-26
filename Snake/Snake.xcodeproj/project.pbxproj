@@ -148,6 +148,9 @@
 		97A84E9F1701417A00A5A273 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E9E1701417A00A5A273 /* menu.png */; };
 		97A84EA11701418200A5A273 /* menu-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A84EA01701418200A5A273 /* menu-on.png */; };
 		97A84EA4170144E300A5A273 /* SettingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A84EA3170144E300A5A273 /* SettingLayer.m */; };
+		97A84EA61701495100A5A273 /* on.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A84EA51701495100A5A273 /* on.png */; };
+		97A84EA81701495500A5A273 /* off.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A84EA71701495500A5A273 /* off.png */; };
+		97A84EAC1701520100A5A273 /* CCRadioMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A84EAB1701520100A5A273 /* CCRadioMenu.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -432,6 +435,10 @@
 		97A84EA01701418200A5A273 /* menu-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-on.png"; sourceTree = "<group>"; };
 		97A84EA2170144E300A5A273 /* SettingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingLayer.h; sourceTree = "<group>"; };
 		97A84EA3170144E300A5A273 /* SettingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingLayer.m; sourceTree = "<group>"; };
+		97A84EA51701495100A5A273 /* on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = on.png; sourceTree = "<group>"; };
+		97A84EA71701495500A5A273 /* off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = off.png; sourceTree = "<group>"; };
+		97A84EAA1701520100A5A273 /* CCRadioMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRadioMenu.h; sourceTree = "<group>"; };
+		97A84EAB1701520100A5A273 /* CCRadioMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRadioMenu.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -490,6 +497,7 @@
 		97A84CFA1701236000A5A273 /* Snake */ = {
 			isa = PBXGroup;
 			children = (
+				97A84EA91701520100A5A273 /* CCRadioMenu */,
 				97A84E721701236400A5A273 /* AppDelegate.h */,
 				97A84E731701236400A5A273 /* AppDelegate.m */,
 				97A84E751701236400A5A273 /* HelloWorldLayer.h */,
@@ -877,6 +885,8 @@
 		97A84E801701247E00A5A273 /* Snake-Resources */ = {
 			isa = PBXGroup;
 			children = (
+				97A84EA51701495100A5A273 /* on.png */,
+				97A84EA71701495500A5A273 /* off.png */,
 				97A84E89170124E900A5A273 /* level.plist */,
 				97A84EA01701418200A5A273 /* menu-on.png */,
 				97A84E9E1701417A00A5A273 /* menu.png */,
@@ -891,6 +901,15 @@
 				97A84E95170139A300A5A273 /* snow.png */,
 			);
 			name = "Snake-Resources";
+			sourceTree = "<group>";
+		};
+		97A84EA91701520100A5A273 /* CCRadioMenu */ = {
+			isa = PBXGroup;
+			children = (
+				97A84EAA1701520100A5A273 /* CCRadioMenu.h */,
+				97A84EAB1701520100A5A273 /* CCRadioMenu.m */,
+			);
+			path = CCRadioMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -968,6 +987,8 @@
 				97A84E9D1701417400A5A273 /* return-on.png in Resources */,
 				97A84E9F1701417A00A5A273 /* menu.png in Resources */,
 				97A84EA11701418200A5A273 /* menu-on.png in Resources */,
+				97A84EA61701495100A5A273 /* on.png in Resources */,
+				97A84EA81701495500A5A273 /* off.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1085,6 +1106,7 @@
 				97A84E8D1701258800A5A273 /* MenuLayer.m in Sources */,
 				97A84E9917013B7E00A5A273 /* AboutLayer.m in Sources */,
 				97A84EA4170144E300A5A273 /* SettingLayer.m in Sources */,
+				97A84EAC1701520100A5A273 /* CCRadioMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
