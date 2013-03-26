@@ -9,6 +9,7 @@
 #import "SettingLayer.h"
 #import "MenuLayer.h"
 #import "CCRadioMenu.h"
+#import "SimpleAudioEngine.h"
 #import "GameConfig.h"
 
 
@@ -132,14 +133,17 @@
         // play music
         CCLOG(@"music play");
         [defaults setObject:@"on" forKey:@"isMusicOn"];
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf" loop:YES];
     } else if ([isMusicOn isEqualToString:@"on"]) {
         
         // stop music
         CCLOG(@"music stop");
         [defaults setObject:@"off" forKey:@"isMusicOn"];
+        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     }
 }
 
+// easy degree for new user
 - (void)easyBtnTapped: (id)sender
 {
     CCLOG(@"easy");

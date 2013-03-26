@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9797D89D1701640900FF3F6C /* GameConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9797D89C1701640900FF3F6C /* GameConfig.plist */; };
+		9797D8A01701708C00FF3F6C /* HighScoreLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9797D89F1701708C00FF3F6C /* HighScoreLayer.m */; };
+		9797D8A41701732800FF3F6C /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9797D8A21701732800FF3F6C /* background-music-aac.caf */; };
+		9797D8A51701732800FF3F6C /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9797D8A31701732800FF3F6C /* pew-pew-lei.caf */; };
 		97A84CE91701236000A5A273 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A84CE81701236000A5A273 /* QuartzCore.framework */; };
 		97A84CEB1701236000A5A273 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A84CEA1701236000A5A273 /* OpenGLES.framework */; };
 		97A84CED1701236000A5A273 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A84CEC1701236000A5A273 /* OpenAL.framework */; };
@@ -156,6 +159,10 @@
 
 /* Begin PBXFileReference section */
 		9797D89C1701640900FF3F6C /* GameConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameConfig.plist; sourceTree = "<group>"; };
+		9797D89E1701708C00FF3F6C /* HighScoreLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoreLayer.h; sourceTree = "<group>"; };
+		9797D89F1701708C00FF3F6C /* HighScoreLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoreLayer.m; sourceTree = "<group>"; };
+		9797D8A21701732800FF3F6C /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
+		9797D8A31701732800FF3F6C /* pew-pew-lei.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pew-pew-lei.caf"; sourceTree = "<group>"; };
 		97A84CE51701236000A5A273 /* Snake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A84CE81701236000A5A273 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		97A84CEA1701236000A5A273 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -463,6 +470,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9797D8A11701732800FF3F6C /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				9797D8A21701732800FF3F6C /* background-music-aac.caf */,
+				9797D8A31701732800FF3F6C /* pew-pew-lei.caf */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		97A84CDC1701236000A5A273 = {
 			isa = PBXGroup;
 			children = (
@@ -513,6 +529,8 @@
 				97A84E9817013B7E00A5A273 /* AboutLayer.m */,
 				97A84EA2170144E300A5A273 /* SettingLayer.h */,
 				97A84EA3170144E300A5A273 /* SettingLayer.m */,
+				9797D89E1701708C00FF3F6C /* HighScoreLayer.h */,
+				9797D89F1701708C00FF3F6C /* HighScoreLayer.m */,
 				97A84CFB1701236000A5A273 /* Resources */,
 				97A84D151701236000A5A273 /* libs */,
 				97A84E6E1701236400A5A273 /* Supporting Files */,
@@ -523,6 +541,7 @@
 		97A84CFB1701236000A5A273 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9797D8A11701732800FF3F6C /* Sounds */,
 				97A84E801701247E00A5A273 /* Snake-Resources */,
 				97A84CFC1701236000A5A273 /* Default.png */,
 				97A84CFE1701236000A5A273 /* Default-Landscape~ipad.png */,
@@ -993,6 +1012,8 @@
 				97A84EA61701495100A5A273 /* on.png in Resources */,
 				97A84EA81701495500A5A273 /* off.png in Resources */,
 				9797D89D1701640900FF3F6C /* GameConfig.plist in Resources */,
+				9797D8A41701732800FF3F6C /* background-music-aac.caf in Resources */,
+				9797D8A51701732800FF3F6C /* pew-pew-lei.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1111,6 +1132,7 @@
 				97A84E9917013B7E00A5A273 /* AboutLayer.m in Sources */,
 				97A84EA4170144E300A5A273 /* SettingLayer.m in Sources */,
 				97A84EAC1701520100A5A273 /* CCRadioMenu.m in Sources */,
+				9797D8A01701708C00FF3F6C /* HighScoreLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

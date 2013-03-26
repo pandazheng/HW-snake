@@ -9,6 +9,7 @@
 #import "MenuLayer.h"
 #import "AboutLayer.h"
 #import "SettingLayer.h"
+#import "HighScoreLayer.h"
 #import "GameConfig.h"
 
 
@@ -26,9 +27,6 @@
 - (id)init
 {
     if (self = [super init]) {
-        
-        // initilize the User Default
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
         CCDirector *director = [CCDirector sharedDirector];
         CGSize winSize = [director winSize];
@@ -84,7 +82,8 @@
 // high score layer
 - (void)highScoreBtnClicked
 {
-    
+    CCDirector *director = [CCDirector sharedDirector];
+    [director replaceScene:[HighScoreLayer scene]];
 }
 
 // about layer
