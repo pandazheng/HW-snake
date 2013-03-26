@@ -7,6 +7,7 @@
 //
 
 #import "MenuLayer.h"
+#import "AboutLayer.h"
 #import "GameConfig.h"
 
 
@@ -41,23 +42,23 @@
         CCMenuItemSprite *playBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithSpriteFrameName:@"btn-play-off.png"]
                                                             selectedSprite:[CCSprite spriteWithSpriteFrameName:@"btn-play-on.png"]
                                                                     target:self
-                                                                  selector:@selector(playBtnClicked:)];
+                                                                  selector:@selector(playBtnClicked)];
         
         CCMenuItemSprite *highScoreBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithSpriteFrameName:@"btn-highscores-off.png"]
                                                             selectedSprite:[CCSprite spriteWithSpriteFrameName:@"btn-highscores-on.png"]
                                                                     target:self
-                                                                  selector:@selector(highScoreBtnClicked:)];
+                                                                  selector:@selector(highScoreBtnClicked)];
         
         CCMenuItemSprite *aboutBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithSpriteFrameName:@"btn-about-off.png"]
                                                                  selectedSprite:[CCSprite spriteWithSpriteFrameName:@"btn-about-on.png"]
                                                                          target:self
-                                                                       selector:@selector(aboutBtnClicked:)];
+                                                                       selector:@selector(aboutBtnClicked)];
         
         CCMenu *menu = [CCMenu menuWithItems:playBtn, highScoreBtn, aboutBtn, nil];
         [menu alignItemsVertically];
         
         // set the setting menu 
-        CCMenuItemSprite *settingBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"setting.png"] selectedSprite:[CCSprite spriteWithFile:@"setting-on.png"] target:self selector:@selector(settingBtnClicked:)];
+        CCMenuItemSprite *settingBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"setting.png"] selectedSprite:[CCSprite spriteWithFile:@"setting-on.png"] target:self selector:@selector(settingBtnClicked)];
         
         [settingBtn setPosition:CGPointMake(210, -130)];
         CCMenu *menu1 =[CCMenu menuWithItems:settingBtn, nil];
@@ -81,7 +82,8 @@
 
 - (void)aboutBtnClicked
 {
-    
+    CCDirector *director = [CCDirector sharedDirector];
+    [director replaceScene:[AboutLayer scene]];
 }
 
 - (void)settingBtnClicked
