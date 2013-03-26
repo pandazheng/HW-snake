@@ -10,6 +10,7 @@
 #import "AboutLayer.h"
 #import "SettingLayer.h"
 #import "HighScoreLayer.h"
+#import "WorldLayer.h"
 #import "GameConfig.h"
 
 
@@ -76,7 +77,8 @@
 // play game
 - (void)playBtnClicked
 {
-    
+    CCDirector *director = [CCDirector sharedDirector];
+    [director replaceScene:[WorldLayer scene]];
 }
 
 // high score layer

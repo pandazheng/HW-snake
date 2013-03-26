@@ -11,6 +11,7 @@
 		9797D8A01701708C00FF3F6C /* HighScoreLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9797D89F1701708C00FF3F6C /* HighScoreLayer.m */; };
 		9797D8A41701732800FF3F6C /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9797D8A21701732800FF3F6C /* background-music-aac.caf */; };
 		9797D8A51701732800FF3F6C /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9797D8A31701732800FF3F6C /* pew-pew-lei.caf */; };
+		9797D8AB1701773A00FF3F6C /* WorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9797D8AA1701773A00FF3F6C /* WorldLayer.m */; };
 		97A84CE91701236000A5A273 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A84CE81701236000A5A273 /* QuartzCore.framework */; };
 		97A84CEB1701236000A5A273 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A84CEA1701236000A5A273 /* OpenGLES.framework */; };
 		97A84CED1701236000A5A273 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A84CEC1701236000A5A273 /* OpenAL.framework */; };
@@ -162,6 +163,8 @@
 		9797D89F1701708C00FF3F6C /* HighScoreLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoreLayer.m; sourceTree = "<group>"; };
 		9797D8A21701732800FF3F6C /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
 		9797D8A31701732800FF3F6C /* pew-pew-lei.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pew-pew-lei.caf"; sourceTree = "<group>"; };
+		9797D8A91701773A00FF3F6C /* WorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldLayer.h; sourceTree = "<group>"; };
+		9797D8AA1701773A00FF3F6C /* WorldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldLayer.m; sourceTree = "<group>"; };
 		97A84CE51701236000A5A273 /* Snake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A84CE81701236000A5A273 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		97A84CEA1701236000A5A273 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -501,6 +504,15 @@
 			name = GameConfig;
 			sourceTree = "<group>";
 		};
+		9797D8A81701772900FF3F6C /* World */ = {
+			isa = PBXGroup;
+			children = (
+				9797D8A91701773A00FF3F6C /* WorldLayer.h */,
+				9797D8AA1701773A00FF3F6C /* WorldLayer.m */,
+			);
+			name = World;
+			sourceTree = "<group>";
+		};
 		97A84CDC1701236000A5A273 = {
 			isa = PBXGroup;
 			children = (
@@ -537,6 +549,7 @@
 		97A84CFA1701236000A5A273 /* Snake */ = {
 			isa = PBXGroup;
 			children = (
+				9797D8A81701772900FF3F6C /* World */,
 				9797D8A7170175B100FF3F6C /* GameConfig */,
 				9797D8A61701754300FF3F6C /* GameScene */,
 				97A84EA91701520100A5A273 /* CCRadioMenu */,
@@ -1143,6 +1156,7 @@
 				97A84EA4170144E300A5A273 /* SettingLayer.m in Sources */,
 				97A84EAC1701520100A5A273 /* CCRadioMenu.m in Sources */,
 				9797D8A01701708C00FF3F6C /* HighScoreLayer.m in Sources */,
+				9797D8AB1701773A00FF3F6C /* WorldLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

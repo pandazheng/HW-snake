@@ -36,6 +36,10 @@
 -(void) onEnter
 {
 	[super onEnter];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"off" forKey:@"isMusicOn"];
+    [defaults setObject:@"easy" forKey:@"degree"];
 
 	// ask director for the window size
 	CGSize size = [[CCDirector sharedDirector] winSize];

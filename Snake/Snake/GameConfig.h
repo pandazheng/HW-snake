@@ -11,4 +11,9 @@
 
 #define kGameBackgroundColor ccc4(174, 206, 139, 255)
 
+#define MAX_COLS    20
+#define MAX_ROWS    11
+#define MAX_SPEED   10
+#define BASE_SPEED  0.2
+
 #endif
