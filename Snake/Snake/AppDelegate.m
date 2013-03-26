@@ -71,6 +71,9 @@
 
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
+    
+    // load the spritesheet
+	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Snake.plist"];
 
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
 	[director_ pushScene: [IntroLayer scene]]; 

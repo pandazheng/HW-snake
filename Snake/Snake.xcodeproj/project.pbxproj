@@ -138,6 +138,10 @@
 		97A84E87170124C300A5A273 /* Snake.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E83170124C300A5A273 /* Snake.plist */; };
 		97A84E88170124C300A5A273 /* Snake.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E84170124C300A5A273 /* Snake.png */; };
 		97A84E8A170124E900A5A273 /* level.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E89170124E900A5A273 /* level.plist */; };
+		97A84E8D1701258800A5A273 /* MenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A84E8C1701258800A5A273 /* MenuLayer.m */; };
+		97A84E9017012EC900A5A273 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E8F17012EC900A5A273 /* setting.png */; };
+		97A84E921701314B00A5A273 /* setting-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E911701314B00A5A273 /* setting-on.png */; };
+		97A84E96170139A300A5A273 /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A84E95170139A300A5A273 /* snow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -408,6 +412,12 @@
 		97A84E83170124C300A5A273 /* Snake.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Snake.plist; sourceTree = "<group>"; };
 		97A84E84170124C300A5A273 /* Snake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snake.png; sourceTree = "<group>"; };
 		97A84E89170124E900A5A273 /* level.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level.plist; sourceTree = "<group>"; };
+		97A84E8B1701258800A5A273 /* MenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuLayer.h; sourceTree = "<group>"; };
+		97A84E8C1701258800A5A273 /* MenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuLayer.m; sourceTree = "<group>"; };
+		97A84E8E1701270D00A5A273 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		97A84E8F17012EC900A5A273 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
+		97A84E911701314B00A5A273 /* setting-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-on.png"; sourceTree = "<group>"; };
+		97A84E95170139A300A5A273 /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -472,6 +482,9 @@
 				97A84E761701236400A5A273 /* HelloWorldLayer.m */,
 				97A84E781701236400A5A273 /* IntroLayer.h */,
 				97A84E791701236400A5A273 /* IntroLayer.m */,
+				97A84E8B1701258800A5A273 /* MenuLayer.h */,
+				97A84E8C1701258800A5A273 /* MenuLayer.m */,
+				97A84E8E1701270D00A5A273 /* GameConfig.h */,
 				97A84CFB1701236000A5A273 /* Resources */,
 				97A84D151701236000A5A273 /* libs */,
 				97A84E6E1701236400A5A273 /* Supporting Files */,
@@ -846,6 +859,9 @@
 		97A84E801701247E00A5A273 /* Snake-Resources */ = {
 			isa = PBXGroup;
 			children = (
+				97A84E95170139A300A5A273 /* snow.png */,
+				97A84E911701314B00A5A273 /* setting-on.png */,
+				97A84E8F17012EC900A5A273 /* setting.png */,
 				97A84E81170124C300A5A273 /* Snake-hd.plist */,
 				97A84E82170124C300A5A273 /* Snake-hd.png */,
 				97A84E83170124C300A5A273 /* Snake.plist */,
@@ -923,6 +939,9 @@
 				97A84E87170124C300A5A273 /* Snake.plist in Resources */,
 				97A84E88170124C300A5A273 /* Snake.png in Resources */,
 				97A84E8A170124E900A5A273 /* level.plist in Resources */,
+				97A84E9017012EC900A5A273 /* setting.png in Resources */,
+				97A84E921701314B00A5A273 /* setting-on.png in Resources */,
+				97A84E96170139A300A5A273 /* snow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1037,6 +1056,7 @@
 				97A84E741701236400A5A273 /* AppDelegate.m in Sources */,
 				97A84E771701236400A5A273 /* HelloWorldLayer.m in Sources */,
 				97A84E7A1701236400A5A273 /* IntroLayer.m in Sources */,
+				97A84E8D1701258800A5A273 /* MenuLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
