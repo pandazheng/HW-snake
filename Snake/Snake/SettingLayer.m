@@ -111,7 +111,7 @@
                                                            selectedImage:@"on.png"
                                                            disabledImage:@"off.png"
                                                                   target:self
-                                                                selector:@selector(diffBtnTapped:)];
+                                                                selector:@selector(hardBtnTapped:)];
         
         CCRadioMenu *radioMenu = [CCRadioMenu menuWithItems:easyItem, mediumItem, difficultItem, nil];
         [radioMenu setPosition:CGPointMake(winSize.width * 0.6, winSize.height * 0.4)];
@@ -122,7 +122,7 @@
             
             [radioMenu setSelectedItem_:mediumItem];
             [mediumItem selected];
-        } else if ([degree isEqualToString:@"difficult"]) {
+        } else if ([degree isEqualToString:@"hard"]) {
             
             [radioMenu setSelectedItem_:difficultItem];
             [difficultItem selected];
@@ -179,11 +179,11 @@
     [defaults setObject:@"medium" forKey:@"degree"];
 }
 
-- (void)diffBtnTapped: (id)sender
+- (void)hardBtnTapped: (id)sender
 {
-    CCLOG(@"difficult");
+    CCLOG(@"hard");
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@"difficult" forKey:@"degree"];
+    [defaults setObject:@"hard" forKey:@"degree"];
 }
 
 @end

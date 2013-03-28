@@ -17,6 +17,14 @@ CGPoint MakeSnakePiece(NSInteger x, NSInteger y)
 }
 
 @implementation Snake
+@synthesize snakeInfo_;
+@synthesize snakePoints_;
+@synthesize snakeSprites_;
+@synthesize snakePiecesCount_;
+@synthesize snakePoint_;
+@synthesize direction_;
+@synthesize directionRobot_;
+@synthesize currentSpeed_;
 
 - (id)init
 {
@@ -25,13 +33,47 @@ CGPoint MakeSnakePiece(NSInteger x, NSInteger y)
         NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"GameConfig" ofType:@"plist"];
         NSDictionary *infos = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
         
+        snakePoints_ = [[NSMutableArray alloc] init];
+        snakeSprites_ = [[NSMutableArray alloc] init];
+        
         snakeInfo_ = [[infos objectForKey:@"level"] objectForKey:@"snake"];
         
         direction_ = [[[infos objectForKey:@"level"] objectForKey:@"direction"] intValue];
+        currentSpeed_ = [[[infos objectForKey:@"level"] objectForKey:@"speed"] intValue];
         
-        CCLOG(@"%@", snakeInfo_);
+        snakePiecesCount_ = [snakeInfo_ count];
+    }
+    
+    return self;
+}
+
+- (id)initASnakeWithType: (SnakeType)type
+{
+    if(self = [super init]){
+        
+        NSString *snakeTypeStr = [[NSString alloc] init];
+        switch (type) {
+            case SnakeTypeMe:
+                snakeTypeStr = @"snake";
+                break;
+            case SnakeTyepRobot:
+                snakeTypeStr = @"snakeTypeRobot";
+            default:
+                break;
+        }
+        
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"GameConfig" ofType:@"plist"];
+        NSDictionary *infos = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+        
+        snakePoints_ = [[NSMutableArray alloc] init];
         snakeSprites_ = [[NSMutableArray alloc] init];
-        snake_ = [[NSMutableArray alloc] init];
+        
+        snakeInfo_ = [[infos objectForKey:@"level"] objectForKey:snakeTypeStr];
+        directionRobot_ = [[[infos objectForKey:@"level"] objectForKey:@"directionRobot"] intValue];
+        CCLOG(@"%d", directionRobot_);
+        currentSpeed_ = [[[infos objectForKey:@"level"] objectForKey:@"speed"] intValue];
+        
+        snakePiecesCount_ = [snakeInfo_ count];
     }
     
     return self;
@@ -39,22 +81,21 @@ CGPoint MakeSnakePiece(NSInteger x, NSInteger y)
 
 - (NSMutableArray *)getSnakeSprites
 {
-    for (int i = 0; i < [snakeInfo_ count]; i++) {
-        NSDictionary *piece = [snakeInfo_ objectAtIndex:i];
+    for (int i = 0; i < snakePiecesCount_; i++) {
+        NSMutableArray *piece = [snakeInfo_ objectAtIndex:i];
         
         CGPoint snakePiece = MakeSnakePiece([[piece valueForKey:@"x"] intValue], [[piece valueForKey:@"y"] intValue]);
         
         NSValue *snakePieceValue = [NSValue valueWithCGPoint:snakePiece];
-        [snake_ addObject:snakePieceValue];
+        [snakePoints_ addObject:snakePieceValue];
         
         [self snakeSpriteAtIndex:i].scale = 1;
     }
-    snakePieces_ = [snakeInfo_ count];
-    return snakeSprites_;
+    return snakePoints_;
 }
 
 - (CCSprite *)snakeSpriteAtIndex:(NSInteger)index {
-    NSAssert(index <= [snakeSprites_ count], @"Oopsiee");
+    NSAssert(index <= snakePiecesCount_, @"Oopsiee");
     if ([snakeSprites_ count] == index) {
         CCSprite *sprite = nil;
         if (index == 0) {
@@ -66,21 +107,6 @@ CGPoint MakeSnakePiece(NSInteger x, NSInteger y)
         [snakeSprites_ addObject:sprite];
     }
     return [snakeSprites_ objectAtIndex:index];
-}
-
-- (NSInteger)getSnakePiecesCount
-{
-    return snakePieces_;
-}
-
-- (NSInteger)getDirection
-{
-    return direction_;
-}
-
-- (NSMutableArray *)getSnakePieces
-{
-    return snake_;
 }
 
 @end

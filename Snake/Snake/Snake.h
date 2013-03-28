@@ -9,17 +9,25 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+typedef enum {
+    SnakeTypeMe,
+    SnakeTyepRobot
+} SnakeType;
+
 @interface Snake : CCLayer {
-    
-    NSDictionary *snakeInfo_;
-    
-    NSMutableArray *snake_;
-    NSMutableArray *snakeSprites_;
-    NSInteger snakePieces_;
-    
-    CGPoint snakePiece;
-    
-    NSInteger direction_;
 }
+
+@property (nonatomic, retain) NSDictionary *snakeInfo_;
+@property (nonatomic, retain) NSMutableArray *snakePoints_;
+@property (nonatomic, retain) NSMutableArray *snakeSprites_;
+@property (nonatomic) NSInteger snakePiecesCount_;
+@property (nonatomic) CGPoint snakePoint_;
+@property (nonatomic) NSInteger direction_;
+@property (nonatomic) NSInteger directionRobot_;
+@property (nonatomic) NSInteger currentSpeed_;
+
+- (NSMutableArray *)getSnakeSprites;
+- (CCSprite *)snakeSpriteAtIndex:(NSInteger)index;
+- (id)initASnakeWithType: (SnakeType)type;
 
 @end

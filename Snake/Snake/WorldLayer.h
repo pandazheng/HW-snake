@@ -23,6 +23,12 @@ typedef enum {
     GameStateGameOver
 } GameState;
 
+typedef enum {
+    EASY,
+    MEDIUM,
+    HARD
+} Degree;
+
 @interface WorldLayer : CCLayer {
     
     CGSize winSize_;
@@ -39,6 +45,10 @@ typedef enum {
     NSMutableArray *snakeSprites_;
     NSMutableArray *snakePieces_;
     
+    Snake *snake2;
+    NSMutableArray *snakeSpritesRobot_;
+    NSMutableArray *snakePiecesRobot_;
+    
     // game info
     NSArray *info_;
     
@@ -46,12 +56,18 @@ typedef enum {
     Direction direction_;
     Direction nextDirection_;
     
+    Direction directionRobot_;
+    Direction nextDirectionRobot_;
+    
     // speed
     NSInteger currentSpeed_;
     float accumulator;
     
     // game state
     GameState gameState_;
+    
+    // game degree
+    Degree currentDegree;
 }
 
 + (CCScene *)scene;

@@ -16,4 +16,7 @@
     NSDictionary *infoDef_;
 }
 
+@property (nonatomic) NSInteger remainingFoodPiecesCount_;
+@property (nonatomic, retain) CCSprite *foodSprite_;
+
 @end
