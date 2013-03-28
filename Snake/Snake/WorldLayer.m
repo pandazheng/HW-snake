@@ -78,8 +78,7 @@ void ccDrawFilledCGRect( CGRect rect )
         // put food
         Food *food = [[Food alloc] init];
         foodSprite_ = [food foodSprite_];
-        NSInteger remain = [food remainingFoodPiecesCount_];
-        CCLOG(@"%d", remain);
+        remainingFoodPieces_ = [food remainingFoodPiecesCount_];
         
         // set game degree
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -150,7 +149,8 @@ void ccDrawFilledCGRect( CGRect rect )
     while (true) {
         
         col = rand() % MAX_COLS;
-        row = rand() % MAX_ROWS;
+//        row = rand() % MAX_ROWS;
+        row = 1;
         
         BOOL isColliding = NO;
         
@@ -257,42 +257,42 @@ void ccDrawFilledCGRect( CGRect rect )
     }
     else {
         
-        NSInteger snakeCount = [snakePieces_ count];
+        // initialize the snake length
+        snakeCount_ = [snakePieces_ count];
         
-        CGPoint lastPiece = [[snakePieces_ objectAtIndex:snakeCount - 1] CGPointValue];
+        CGPoint lastPiece = [[snakePieces_ objectAtIndex:snakeCount_ - 1] CGPointValue];
 
-        for (int i = snakeCount - 1; i > 0; i--) {
+        for (int i = snakeCount_ - 1; i > 0; i--) {
             snakePieces_[i] = snakePieces_[i - 1];
         }
         
         NSValue *value = [NSValue valueWithCGPoint:tmp];
         snakePieces_[0] = value;
-//        if (foodSprite_.tag / 100 == snake_[0].x
-//            && foodSprite_.tag % 100 == snake_[0].y) {
-//            snake_[snakePieces_] = lastPiece;
-//            snakePieces_++;
-//            remainingFoodPieces_--;
-//            [foodSprite_ removeFromParentAndCleanup:YES];
-//            if (remainingFoodPieces_) {
-//                [self setUpFoodPiece];
-//            }
-//            else {
-//                gameState_ = GameStateLevelOver;
-//                [self displayEndOfLevelAnimation];
-//            }
-//        }
+        
+        CGPoint tmp0 = [[snakePieces_ objectAtIndex:0] CGPointValue];
+        if (foodSprite_.tag / 100 == tmp0.x && foodSprite_.tag % 100 == tmp0.y)
+        {
+            NSValue *tmpValue = [NSValue valueWithCGPoint:lastPiece];
+            [snakePieces_ addObject:tmpValue];
+            [snake1 snakeSpriteAtIndex:snakeCount_];
+            remainingFoodPieces_--;
+            [foodSprite_ removeFromParentAndCleanup:YES];
+            if (remainingFoodPieces_) {
+                Food *food = [[Food alloc] init];
+                [self putFood:[food foodSprite_]];
+            }
+            else {
+                gameState_ = GameStateGameOver;
+            }
+        }
     }
 }
 
-- (void)snakeRobotStepEasy
+- (void)snakeRobotMove
 {
-    // easy degree
-    srand(time(NULL));
-    nextDirectionRobot_ = rand() % 4 + 1;
-    
     CGPoint tmp = [[snakePiecesRobot_ objectAtIndex:0] CGPointValue];
     
-    switch (nextDirectionRobot_) {
+    switch (directionRobot_) {
         case UP:
             tmp.y++;
             break;
@@ -331,6 +331,14 @@ void ccDrawFilledCGRect( CGRect rect )
     }
 }
 
+- (void)snakeRobotStepEasy
+{
+    // easy degree
+    nextDirectionRobot_ = arc4random() % 4;
+    
+    directionRobot_ = nextDirectionRobot_;
+}
+
 - (void)snakeRobotStepMedium
 {
     // medium degree
@@ -348,15 +356,16 @@ void ccDrawFilledCGRect( CGRect rect )
             [self snakeRobotStepEasy];
             break;
         case MEDIUM:
-            [self snakeRobotStepMedium];
+            [self snakeRobotStepEasy];
             break;
         case HARD:
-            [self snakeRobotStepHard];
+            [self snakeRobotStepEasy];
             break;
         default:
             [self snakeRobotStepEasy];
             break;
     }
+    [self snakeRobotMove];
 }
 
 - (void)update:(ccTime)time

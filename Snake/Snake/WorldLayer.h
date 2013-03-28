@@ -39,11 +39,13 @@ typedef enum {
     
     // Food Sprite
     CCSprite *foodSprite_;
+    NSInteger remainingFoodPieces_;
     
     // Snake Sprite
     Snake *snake1;
     NSMutableArray *snakeSprites_;
     NSMutableArray *snakePieces_;
+    NSInteger snakeCount_;
     
     Snake *snake2;
     NSMutableArray *snakeSpritesRobot_;

@@ -95,7 +95,6 @@ CGPoint MakeSnakePiece(NSInteger x, NSInteger y)
 }
 
 - (CCSprite *)snakeSpriteAtIndex:(NSInteger)index {
-    NSAssert(index <= snakePiecesCount_, @"Oopsiee");
     if ([snakeSprites_ count] == index) {
         CCSprite *sprite = nil;
         if (index == 0) {
