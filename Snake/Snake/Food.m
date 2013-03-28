@@ -16,11 +16,14 @@
 {
     if (self = [super init]) {
         
-        infos_ = [[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GameConfig" ofType:@"plist"]] retain];
-        CCLOG(@"%@", infos_);
-        NSDictionary *infosDef = [infos_ objectAtIndex:0];
-        remainingFoodPieces_ = [[infosDef valueForKey:@"foodPieces"] intValue];
-        CCLOG(@"nimdiddiid");
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"GameConfig" ofType:@"plist"];
+        NSDictionary *infos = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+
+        infoDef_ = [infos objectForKey:@"level"];
+//        CCLOG(@"%@", infoDef_);
+        
+        remainingFoodPieces_ = [[infoDef_ objectForKey:@"foodPieces"] intValue];
+        CCLOG(@"remain Food piece: %d", remainingFoodPieces_);
     }
     
     return self;
@@ -29,7 +32,7 @@
 - (CCSprite *)getFoodSprite
 {
     NSArray *foodTypes = [NSArray arrayWithObjects:@"snail.png",@"worm.png", nil];
-    foodSprite_ = [CCSprite spriteWithSpriteFrameName:[foodTypes objectAtIndex:rand()%[foodTypes count]]];
+    CCSprite *foodSprite_ = [CCSprite spriteWithSpriteFrameName:[foodTypes objectAtIndex:rand()%[foodTypes count]]];
     return foodSprite_;
 }
 

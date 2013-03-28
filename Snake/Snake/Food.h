@@ -10,10 +10,10 @@
 #import "cocos2d.h"
 
 @interface Food : CCLayer {
-    CCSprite *foodSprite_;
+
     NSInteger remainingFoodPieces_;
     
-    NSArray *infos_;
+    NSDictionary *infoDef_;
 }
 
 @end
