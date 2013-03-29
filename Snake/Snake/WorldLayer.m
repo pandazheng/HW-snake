@@ -9,6 +9,7 @@
 #import "WorldLayer.h"
 #import "GameConfig.h"
 #import "MenuLayer.h"
+#import "GameOverLayer.h"
 #import "CCDrawingPrimitives.h"
 #import <OpenGLES/ES1/gl.h>
 
@@ -155,6 +156,23 @@ void ccDrawFilledCGRect( CGRect rect )
         
         BOOL isColliding = NO;
         
+        for (int i = 0; i < [snakePieces_ count]; i++)
+        {
+            if ([[snakePieces_ objectAtIndex:i] CGPointValue].x == col ||
+                 [[snakePieces_ objectAtIndex:i] CGPointValue].y == row)
+            {
+                isColliding = YES;
+            }
+        }
+        
+        for (int j = 0; j < [snakePiecesRobot_ count]; j++) {
+            if ([[snakePiecesRobot_ objectAtIndex:j] CGPointValue].x == col ||
+                [[snakePiecesRobot_ objectAtIndex:j] CGPointValue].y == row) {
+                isColliding = YES;
+            }
+        }
+                
+        
         if (!isColliding) {
             
             foodSprite_.tag = col * 100 + row;
@@ -269,7 +287,9 @@ void ccDrawFilledCGRect( CGRect rect )
         || tmp.y < 0
         || tmp.y > MAX_ROWS) {
         NSLog(@"GAME OVER");
-        gameState_ = GameStateGameOver;
+        if (type == SnakeTypeMe) {
+            gameState_ = GameStateGameOver;
+        }
     }
     
     else {
@@ -289,6 +309,10 @@ void ccDrawFilledCGRect( CGRect rect )
         CGPoint tmp0 = [[snakeSprite objectAtIndex:0] CGPointValue];
         if (foodSprite_.tag / 100 == tmp0.x && foodSprite_.tag % 100 == tmp0.y)
         {
+            // score += 100
+            score_ += 100;
+            [self setScore:score_];
+            
             NSValue *tmpValue = [NSValue valueWithCGPoint:lastPiece];
             snakeSprite[snakeCount] = tmpValue;
             remainingFoodPieces_--;
@@ -303,109 +327,6 @@ void ccDrawFilledCGRect( CGRect rect )
     }
 
 
-}
-
-- (void)step
-{
-    direction_ = nextDirection_;
-    
-    CGPoint tmp = [[snakePieces_ objectAtIndex:0] CGPointValue];
-    
-    switch (direction_) {
-        case UP:
-            tmp.y++;
-            break;
-        case RIGHT:
-            tmp.x++;
-            break;
-        case DOWN:
-            tmp.y--;
-            break;
-        case LEFT:
-            tmp.x--;
-            break;
-        default:
-            break;
-    }
-    if (tmp.x < 0
-        || tmp.x > MAX_COLS
-        || tmp.y < 0
-        || tmp.y > MAX_ROWS) {
-        NSLog(@"GAME OVER");
-        gameState_ = GameStateGameOver;
-    }
-    else {
-        
-        // initialize the snake length
-        snakeCount_ = [snakePieces_ count];
-        
-        CGPoint lastPiece = [[snakePieces_ objectAtIndex:snakeCount_ - 1] CGPointValue];
-
-        for (int i = snakeCount_ - 1; i > 0; i--) {
-            snakePieces_[i] = snakePieces_[i - 1];
-        }
-        
-        NSValue *value = [NSValue valueWithCGPoint:tmp];
-        snakePieces_[0] = value;
-        
-        CGPoint tmp0 = [[snakePieces_ objectAtIndex:0] CGPointValue];
-        if (foodSprite_.tag / 100 == tmp0.x && foodSprite_.tag % 100 == tmp0.y)
-        {
-            NSValue *tmpValue = [NSValue valueWithCGPoint:lastPiece];
-            snakePieces_[snakeCount_] = tmpValue;
-            remainingFoodPieces_--;
-            [foodSprite_ removeFromParentAndCleanup:YES];
-            if (remainingFoodPieces_) {
-                [self putFood];
-            }
-            else {
-                gameState_ = GameStateGameOver;
-            }
-        }
-    }
-}
-
-- (void)snakeRobotMove
-{
-    CGPoint tmp = [[snakePiecesRobot_ objectAtIndex:0] CGPointValue];
-    
-    switch (directionRobot_) {
-        case UP:
-            tmp.y++;
-            break;
-        case RIGHT:
-            tmp.x++;
-            break;
-        case DOWN:
-            tmp.y--;
-            break;
-        case LEFT:
-            tmp.x--;
-            break;
-        default:
-            break;
-    }
-    
-    if (tmp.x < 0
-        || tmp.x > MAX_COLS
-        || tmp.y < 0
-        || tmp.y > MAX_ROWS) {
-        NSLog(@"GAME OVER");
-        //gameState_ = GameStateGameOver;
-    }
-    else {
-        
-        NSInteger snakeCount = [snakePiecesRobot_ count];
-        
-        CGPoint lastPiece = [[snakePiecesRobot_ objectAtIndex:snakeCount - 1] CGPointValue];
-        
-        for (int i = snakeCount - 1; i > 0; i--) {
-            snakePiecesRobot_[i] = snakePiecesRobot_[i - 1];
-        }
-        
-        NSValue *value = [NSValue valueWithCGPoint:tmp];
-        snakePiecesRobot_[0] = value;
-    }
 }
 
 - (void)snakeRobotStepEasy
@@ -457,6 +378,9 @@ void ccDrawFilledCGRect( CGRect rect )
             [self stepBySnakeSprite:snakePieces_ withNextDirection:nextDirection_ andSpriteType:SnakeTypeMe];
             accumulator -= speedStep;
         }
+    } else if (gameState_ == GameStateGameOver) {
+        GameOverLayer *layer = [[GameOverLayer alloc] initWithScore: score_];
+        [[CCDirector sharedDirector] replaceScene:layer];
     }
 }
 

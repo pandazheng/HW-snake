@@ -13,6 +13,9 @@
 		9797D8A51701732800FF3F6C /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9797D8A31701732800FF3F6C /* pew-pew-lei.caf */; };
 		9797D8AB1701773A00FF3F6C /* WorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9797D8AA1701773A00FF3F6C /* WorldLayer.m */; };
 		9797D8B01701939300FF3F6C /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 9797D8AF1701939300FF3F6C /* Food.m */; };
+		97A7A40B170532CD005BD821 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A7A40A170532CD005BD821 /* GameOverLayer.m */; };
+		97A7A40E17053A35005BD821 /* refres-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A7A40C17053A35005BD821 /* refres-off.png */; };
+		97A7A40F17053A35005BD821 /* refresh-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 97A7A40D17053A35005BD821 /* refresh-on.png */; };
 		97A84CE91701236000A5A273 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A84CE81701236000A5A273 /* QuartzCore.framework */; };
 		97A84CEB1701236000A5A273 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A84CEA1701236000A5A273 /* OpenGLES.framework */; };
 		97A84CED1701236000A5A273 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A84CEC1701236000A5A273 /* OpenAL.framework */; };
@@ -169,6 +172,10 @@
 		9797D8AA1701773A00FF3F6C /* WorldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldLayer.m; sourceTree = "<group>"; };
 		9797D8AE1701939300FF3F6C /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
 		9797D8AF1701939300FF3F6C /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
+		97A7A409170532CD005BD821 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
+		97A7A40A170532CD005BD821 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
+		97A7A40C17053A35005BD821 /* refres-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refres-off.png"; sourceTree = "<group>"; };
+		97A7A40D17053A35005BD821 /* refresh-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh-on.png"; sourceTree = "<group>"; };
 		97A84CE51701236000A5A273 /* Snake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A84CE81701236000A5A273 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		97A84CEA1701236000A5A273 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -498,6 +505,8 @@
 				97A84EA3170144E300A5A273 /* SettingLayer.m */,
 				9797D89E1701708C00FF3F6C /* HighScoreLayer.h */,
 				9797D89F1701708C00FF3F6C /* HighScoreLayer.m */,
+				97A7A409170532CD005BD821 /* GameOverLayer.h */,
+				97A7A40A170532CD005BD821 /* GameOverLayer.m */,
 			);
 			name = GameScene;
 			sourceTree = "<group>";
@@ -947,6 +956,8 @@
 		97A84E801701247E00A5A273 /* Snake-Resources */ = {
 			isa = PBXGroup;
 			children = (
+				97A7A40C17053A35005BD821 /* refres-off.png */,
+				97A7A40D17053A35005BD821 /* refresh-on.png */,
 				97A84EA51701495100A5A273 /* on.png */,
 				97A84EA71701495500A5A273 /* off.png */,
 				97A84E89170124E900A5A273 /* level.plist */,
@@ -1064,6 +1075,8 @@
 				9797D89D1701640900FF3F6C /* GameConfig.plist in Resources */,
 				9797D8A41701732800FF3F6C /* background-music-aac.caf in Resources */,
 				9797D8A51701732800FF3F6C /* pew-pew-lei.caf in Resources */,
+				97A7A40E17053A35005BD821 /* refres-off.png in Resources */,
+				97A7A40F17053A35005BD821 /* refresh-on.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1185,6 +1198,7 @@
 				9797D8AB1701773A00FF3F6C /* WorldLayer.m in Sources */,
 				9797D8B01701939300FF3F6C /* Food.m in Sources */,
 				97B4A16E17042597007837FF /* Snake.m in Sources */,
+				97A7A40B170532CD005BD821 /* GameOverLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
