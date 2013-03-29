@@ -77,7 +77,6 @@ void ccDrawFilledCGRect( CGRect rect )
         
         // put food
         Food *food = [[Food alloc] init];
-        foodSprite_ = [food foodSprite_];
         remainingFoodPieces_ = [food remainingFoodPiecesCount_];
         
         // set game degree
@@ -97,7 +96,7 @@ void ccDrawFilledCGRect( CGRect rect )
         
         srand(time(NULL));
         [self scheduleUpdate];
-        [self putFood:foodSprite_];
+        [self putFood];
         
         gameState_ = GameStateRunning;
     }
@@ -141,27 +140,29 @@ void ccDrawFilledCGRect( CGRect rect )
     [scoreLabel_ setString:[NSString stringWithFormat:@"Score: %d", score_]];
 }
 
-- (void)putFood: (CCSprite *)foodSprite
+- (void)putFood
 {
+    Food *food = [[Food alloc] init];
+    foodSprite_ = [food foodSprite_];
+    
     NSInteger col =  0;
     NSInteger row = 0;
     
     while (true) {
         
         col = rand() % MAX_COLS;
-//        row = rand() % MAX_ROWS;
-        row = 1;
+        row = rand() % MAX_ROWS;
         
         BOOL isColliding = NO;
         
         if (!isColliding) {
             
-            foodSprite.tag = col * 100 + row;
+            foodSprite_.tag = col * 100 + row;
             break;
         }
     }
-    [self addChild:foodSprite];
-    foodSprite.position = CGPointMake(40 + col * 20, 34 + row * 20);
+    [self addChild:foodSprite_];
+    foodSprite_.position = CGPointMake(40 + col * 20, 34 + row * 20);
 }
 
 - (void)menuBtnClicked
@@ -226,6 +227,84 @@ void ccDrawFilledCGRect( CGRect rect )
     }
 }
 
+- (void)stepBySnakeSprite: (NSMutableArray *)snakeSprite withNextDirection: (Direction)nextDirection andSpriteType: (SnakeType)type
+{
+    Direction direction;
+    switch (type) {
+        case SnakeTypeMe:
+            nextDirection_ = nextDirection;
+            direction_ = nextDirection_;
+            direction = direction_;
+            break;
+        case SnakeTyepRobot:
+            nextDirectionRobot_ = nextDirection;
+            directionRobot_ = nextDirectionRobot_;
+            direction = directionRobot_;
+            break;
+        default:
+            break;
+    }
+    
+    CGPoint tmp = [[snakeSprite objectAtIndex:0] CGPointValue];
+    
+    switch (direction) {
+        case UP:
+            tmp.y++;
+            break;
+        case RIGHT:
+            tmp.x++;
+            break;
+        case DOWN:
+            tmp.y--;
+            break;
+        case LEFT:
+            tmp.x--;
+            break;
+        default:
+            break;
+    }
+    
+    if (tmp.x < 0
+        || tmp.x > MAX_COLS
+        || tmp.y < 0
+        || tmp.y > MAX_ROWS) {
+        NSLog(@"GAME OVER");
+        gameState_ = GameStateGameOver;
+    }
+    
+    else {
+        
+        // initialize the snake length
+        NSInteger snakeCount = [snakeSprite count];
+        
+        CGPoint lastPiece = [[snakeSprite objectAtIndex:snakeCount - 1] CGPointValue];
+        
+        for (int i = snakeCount - 1; i > 0; i--) {
+            snakeSprite[i] = snakeSprite[i - 1];
+        }
+        
+        NSValue *value = [NSValue valueWithCGPoint:tmp];
+        snakeSprite[0] = value;
+        
+        CGPoint tmp0 = [[snakeSprite objectAtIndex:0] CGPointValue];
+        if (foodSprite_.tag / 100 == tmp0.x && foodSprite_.tag % 100 == tmp0.y)
+        {
+            NSValue *tmpValue = [NSValue valueWithCGPoint:lastPiece];
+            snakeSprite[snakeCount] = tmpValue;
+            remainingFoodPieces_--;
+            [foodSprite_ removeFromParentAndCleanup:YES];
+            if (remainingFoodPieces_) {
+                [self putFood];
+            }
+            else {
+                gameState_ = GameStateGameOver;
+            }
+        }
+    }
+
+
+}
+
 - (void)step
 {
     direction_ = nextDirection_;
@@ -273,13 +352,11 @@ void ccDrawFilledCGRect( CGRect rect )
         if (foodSprite_.tag / 100 == tmp0.x && foodSprite_.tag % 100 == tmp0.y)
         {
             NSValue *tmpValue = [NSValue valueWithCGPoint:lastPiece];
-            [snakePieces_ addObject:tmpValue];
-            [snake1 snakeSpriteAtIndex:snakeCount_];
+            snakePieces_[snakeCount_] = tmpValue;
             remainingFoodPieces_--;
             [foodSprite_ removeFromParentAndCleanup:YES];
             if (remainingFoodPieces_) {
-                Food *food = [[Food alloc] init];
-                [self putFood:[food foodSprite_]];
+                [self putFood];
             }
             else {
                 gameState_ = GameStateGameOver;
@@ -336,7 +413,9 @@ void ccDrawFilledCGRect( CGRect rect )
     // easy degree
     nextDirectionRobot_ = arc4random() % 4;
     
-    directionRobot_ = nextDirectionRobot_;
+    CGPoint tmp = [[snakePiecesRobot_ objectAtIndex:0] CGPointValue];
+    
+//    foodSprite_.tag
 }
 
 - (void)snakeRobotStepMedium
@@ -365,7 +444,7 @@ void ccDrawFilledCGRect( CGRect rect )
             [self snakeRobotStepEasy];
             break;
     }
-    [self snakeRobotMove];
+    [self stepBySnakeSprite:snakePiecesRobot_ withNextDirection:nextDirectionRobot_ andSpriteType:SnakeTyepRobot];
 }
 
 - (void)update:(ccTime)time
@@ -375,7 +454,7 @@ void ccDrawFilledCGRect( CGRect rect )
         float speedStep = BASE_SPEED - BASE_SPEED / MAX_SPEED * currentSpeed_;
         while (accumulator >= speedStep) {
             [self snakeRobotStep];
-            [self step];
+            [self stepBySnakeSprite:snakePieces_ withNextDirection:nextDirection_ andSpriteType:SnakeTypeMe];
             accumulator -= speedStep;
         }
     }
