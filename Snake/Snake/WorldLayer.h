@@ -70,6 +70,12 @@ typedef enum {
     
     // game degree
     Degree currentDegree;
+    
+    // when easy degree
+    BOOL hasRight;
+    BOOL hasLeft;
+    BOOL hasUp;
+    BOOL hasDown;
 }
 
 + (CCScene *)scene;

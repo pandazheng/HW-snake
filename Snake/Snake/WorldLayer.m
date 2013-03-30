@@ -90,6 +90,7 @@ void ccDrawFilledCGRect( CGRect rect )
             currentDegree = HARD;
         } else {
             currentDegree = EASY;
+            [self easyDegreeSetUp];
         }
         
         [self setMenuButtonAndPauseButton];
@@ -104,6 +105,14 @@ void ccDrawFilledCGRect( CGRect rect )
     }
     
     return self;
+}
+
+- (void)easyDegreeSetUp
+{
+    hasRight = NO;
+    hasLeft = NO;
+    hasUp = NO;
+    hasDown = NO;
 }
 
 // set menu button and pause button
@@ -292,7 +301,7 @@ void ccDrawFilledCGRect( CGRect rect )
             gameState_ = GameStateGameOver;
         }
     }
-    
+
     else {
         
         // initialize the snake length
@@ -311,7 +320,9 @@ void ccDrawFilledCGRect( CGRect rect )
         if (foodSprite_.tag / 100 == tmp0.x && foodSprite_.tag % 100 == tmp0.y)
         {
             // score += 100
-            score_ += 100;
+            if (type == SnakeTypeMe) {
+                score_ += 100;
+            }
             [self setScore:score_];
             [[SimpleAudioEngine sharedEngine] playEffect:@"pew-pew-lei.caf"];
             NSValue *tmpValue = [NSValue valueWithCGPoint:lastPiece];
@@ -333,21 +344,78 @@ void ccDrawFilledCGRect( CGRect rect )
 - (void)snakeRobotStepEasy
 {
     // easy degree
-    nextDirectionRobot_ = arc4random() % 4;
+//    nextDirectionRobot_ = arc4random() % 4;
+    CGPoint tmpPos = [[snakePiecesRobot_ objectAtIndex:0] CGPointValue];
     
-    CGPoint tmp = [[snakePiecesRobot_ objectAtIndex:0] CGPointValue];
+    CGPoint foodSpritePos = foodSprite_.position;
+    CGPoint tmpFoodPos = CGPointMake((foodSpritePos.x - 40) / 20, (foodSpritePos.y - 40) / 20);
     
-//    foodSprite_.tag
+    
+    if (tmpFoodPos.x > tmpPos.x && !hasRight) {
+        nextDirectionRobot_ = RIGHT;
+        hasRight = YES;
+        hasLeft = NO;
+        hasUp = NO;
+        hasDown = NO;
+        return;
+    } else if(tmpFoodPos.x < tmpPos.x && !hasLeft){
+        nextDirectionRobot_ = LEFT;
+        hasLeft = YES;
+        hasRight = NO;
+        hasUp = NO;
+        hasDown = NO;
+        return;
+    }
+    
+    if (tmpFoodPos.y > tmpPos.y && !hasUp) {
+        nextDirectionRobot_ = UP;
+        hasUp = YES;
+        hasRight = NO;
+        hasLeft = NO;
+        hasDown = NO;
+        return;
+    } else if (tmpFoodPos.y < tmpPos.y && !hasDown) {
+        nextDirectionRobot_ = DOWN;
+        hasDown = YES;
+        hasLeft = NO;
+        hasRight = NO;
+        hasUp = NO;
+        return;
+    }
 }
 
 - (void)snakeRobotStepMedium
 {
     // medium degree
+    // SnakeRobot's head position
+    CGPoint tmpPos = [[snakePiecesRobot_ objectAtIndex:0] CGPointValue];
+    
+    CGPoint foodSpritePos = foodSprite_.position;
+    CGPoint tmpFoodPos = CGPointMake((foodSpritePos.x - 40) / 20, (foodSpritePos.y - 40) / 20);
+    
+    CCLOG(@"%f %f", tmpPos.x, tmpPos.y);
+    CCLOG(@"%f %f", tmpFoodPos.x, tmpFoodPos.y);
+    
+    if (tmpFoodPos.x > tmpPos.x) {
+        nextDirectionRobot_ = RIGHT;
+        return;
+    } else if(tmpFoodPos.x < tmpPos.x){
+        nextDirectionRobot_ = LEFT;
+        return;
+    }
+    
+    if (tmpFoodPos.y > tmpPos.y) {
+        nextDirectionRobot_ = UP;
+        return;
+    } else if (tmpFoodPos.y < tmpPos.y) {
+        nextDirectionRobot_ = DOWN;
+        return;
+    }
 }
 
 - (void)snakeRobotStepHard
 {
-    // hard degree
+    [self snakeRobotStepMedium];
 }
 
 - (void)snakeRobotStep
@@ -357,16 +425,39 @@ void ccDrawFilledCGRect( CGRect rect )
             [self snakeRobotStepEasy];
             break;
         case MEDIUM:
-            [self snakeRobotStepEasy];
+            [self snakeRobotStepMedium];
             break;
         case HARD:
-            [self snakeRobotStepEasy];
+            [self snakeRobotStepHard];
             break;
         default:
             [self snakeRobotStepEasy];
             break;
     }
     [self stepBySnakeSprite:snakePiecesRobot_ withNextDirection:nextDirectionRobot_ andSpriteType:SnakeTyepRobot];
+}
+
+- (void)contactEach
+{
+    CGPoint tmpSnakeMePos = [[snakePieces_ objectAtIndex:0] CGPointValue];
+    CGPoint tmpSnakeRobotPos = [[snakePiecesRobot_ objectAtIndex:0] CGPointValue];
+    
+//    for (int i = 0; i < [snakePiecesRobot_ count]; i++) {
+//        CGPoint tmp = [[snakePiecesRobot_ objectAtIndex:i] CGPointValue];
+//        if (tmpSnakeMePos.x == tmp.x && tmpSnakeMePos.y == tmp.y) {
+//            gameState_ = GameStateGameOver;
+//            return;
+//        }
+//    }
+    
+    // if the snake robot eat me. the game is over
+    for (int j = 0; j < [snakePieces_ count]; j++) {
+        CGPoint tmp = [[snakePieces_ objectAtIndex:j] CGPointValue];
+        if (tmpSnakeRobotPos.x == tmp.x && tmpSnakeRobotPos.y == tmp.y) {
+            gameState_ = GameStateGameOver;
+            return;
+        }
+    }
 }
 
 - (void)update:(ccTime)time
@@ -377,6 +468,9 @@ void ccDrawFilledCGRect( CGRect rect )
         while (accumulator >= speedStep) {
             [self snakeRobotStep];
             [self stepBySnakeSprite:snakePieces_ withNextDirection:nextDirection_ andSpriteType:SnakeTypeMe];
+            if (currentDegree == HARD) {
+                [self contactEach];
+            }
             accumulator -= speedStep;
         }
     } else if (gameState_ == GameStateGameOver) {
