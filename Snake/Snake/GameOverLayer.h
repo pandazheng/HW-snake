@@ -9,11 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface GameOverLayer : CCLayer<UITextFieldDelegate>{
-    UITextField *textField;
+@interface GameOverLayer : CCLayer{
+    NSInteger score_;
 }
-
-@property (nonatomic) NSInteger currentHighScore_;
 
 + (CCScene *)scene;
 - (id)initWithScore: (NSInteger)score;

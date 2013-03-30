@@ -12,7 +12,6 @@
 #import "WorldLayer.h"
 
 @implementation GameOverLayer
-@synthesize currentHighScore_;
 
 + (CCScene *)scene
 {
@@ -54,14 +53,13 @@
 
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
-        textField = [[UITextField alloc] initWithFrame:CGRectMake(165, 50, 160, 40)];
-        textField.placeholder = @"input your name";
-        textField.textColor = [UIColor redColor];
-        textField.returnKeyType = UIReturnKeyDone;
-        textField.delegate = self;
+        score_ = score;
         
         CCLayerColor *background = [CCLayerColor layerWithColor:kGameBackgroundColor];
         [self addChild:background];
+        
+        // when the game is over
+        [self setupScore];
         
         // return to the menu layer
         CCMenuItemSprite *refreshBtn = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"refres-off.png"]
@@ -77,29 +75,24 @@
         CCMenu *menu = [CCMenu menuWithItems:refreshBtn, menuBtn, nil];
         [menu alignItemsHorizontallyWithPadding:80.0];
         [self addChild:menu];
-        
-        if (score > [self getCurrentHighScore]) {
-            [self showTextField];
-        }
     }
     
     return self;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (void)setupScore
 {
-    [textField resignFirstResponder];
-    [textField removeFromSuperview];
-    return YES;
-}
-
-- (void)showTextField
-{
-    [[[CCDirector sharedDirector] openGLView] addSubview:textField];
-}
-- (NSInteger)getCurrentHighScore
-{
-    return 100;
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    CCLabelTTF *gameOverLabel = [CCLabelTTF labelWithString:@"Game Over" fontName:@"Zapfino" fontSize:24];
+    [gameOverLabel setColor:ccc3(255, 0, 255)];
+    [gameOverLabel setPosition:ccp(winSize.width / 2, winSize.height * 0.8)];
+    [self addChild:gameOverLabel];
+    
+    CCLabelTTF *scoreLabel_ = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", score_]  fontName:@"Marker Felt" fontSize:20];
+    [scoreLabel_ setColor:ccc3(100, 155, 255)];
+    [scoreLabel_ setPosition:ccp(winSize.width / 2, winSize.height / 1.5)];
+    [self addChild:scoreLabel_];
 }
 
 - (void)menuBtnClicked: (id)sender

@@ -11,6 +11,7 @@
 #import "MenuLayer.h"
 #import "GameOverLayer.h"
 #import "CCDrawingPrimitives.h"
+#import "SimpleAudioEngine.h"
 #import <OpenGLES/ES1/gl.h>
 
 
@@ -312,7 +313,7 @@ void ccDrawFilledCGRect( CGRect rect )
             // score += 100
             score_ += 100;
             [self setScore:score_];
-            
+            [[SimpleAudioEngine sharedEngine] playEffect:@"pew-pew-lei.caf"];
             NSValue *tmpValue = [NSValue valueWithCGPoint:lastPiece];
             snakeSprite[snakeCount] = tmpValue;
             remainingFoodPieces_--;
@@ -379,8 +380,13 @@ void ccDrawFilledCGRect( CGRect rect )
             accumulator -= speedStep;
         }
     } else if (gameState_ == GameStateGameOver) {
-        GameOverLayer *layer = [[GameOverLayer alloc] initWithScore: score_];
-        [[CCDirector sharedDirector] replaceScene:layer];
+        [self runAction:
+         [CCSequence actions:
+          [CCDelayTime actionWithDuration:1],
+          [CCCallBlockN actionWithBlock:^(CCNode *node) {
+             [[CCDirector sharedDirector] replaceScene:[[GameOverLayer alloc] initWithScore:score_]];
+         }],
+          nil]];
     }
 }
 
